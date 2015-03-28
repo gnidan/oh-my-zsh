@@ -61,7 +61,7 @@ prompt_end() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER@%m"
+    prompt_segment magenta darkyellow "%(!.%{%F{yellow}%}.)$USER@%m"
   fi
 }
 
@@ -146,7 +146,7 @@ prompt_dir() {
 prompt_virtualenv() {
   local virtualenv_path="$VIRTUAL_ENV"
   if [[ -n $virtualenv_path && -n $VIRTUAL_ENV_DISABLE_PROMPT ]]; then
-    prompt_segment blue black "(`basename $virtualenv_path`)"
+    prompt_segment cyan white "(`basename $virtualenv_path`)"
   fi
 }
 
@@ -168,8 +168,8 @@ prompt_status() {
 build_prompt() {
   RETVAL=$?
   prompt_status
-  prompt_virtualenv
   prompt_context
+  prompt_virtualenv
   prompt_dir
   prompt_git
   prompt_hg
